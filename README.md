@@ -1,6 +1,6 @@
 # Lockin
 
-A tiny, premium always-on-top floating countdown timer for Windows. Set days, hours, minutes and seconds, hit Start, and it floats above everything else while you lock in.
+A tiny, premium always-on-top floating countdown timer for Windows and macOS. Set days, hours, minutes and seconds, hit Start, and it floats above everything else while you lock in.
 
 ## Screenshots
 
@@ -16,20 +16,51 @@ A tiny, premium always-on-top floating countdown timer for Windows. Set days, ho
 - **Large glanceable timer** with a slim progress bar
 - **Icon-only controls** — pause/resume and reset
 - **Soft chime** when time's up
-- Desktop and Start Menu shortcuts via the installer
+- Desktop and Start Menu shortcuts via the Windows installer
 
 ## Download
 
-Get **Lockin 1.0** from the [Releases](https://github.com/AvinashT1625/lockin-github-repo/releases/tag/v1.0) page, run the installer, and launch Lockin from the Start menu.
+Get **Lockin 1.0** from the [Releases](https://github.com/AvinashT1625/lockin-github-repo/releases/tag/v1.0) page.
 
-**Requirements:** Windows 10/11 (64-bit).
+**Windows** (Windows 10/11, 64-bit)
+1. Download `Lockin-1.0.exe`, run the installer, and follow the prompts
+2. Launch Lockin from the Start menu
 
-> The installer isn't code-signed yet, so Windows SmartScreen may show a warning on first run — click **More info → Run anyway**. Signing is on the roadmap.
+**macOS** (macOS 11+, 64-bit)
+1. Download `Lockin-1.0-mac.zip`, unzip it, and drag `Lockin.app` into Applications
+2. On first launch, right-click the app → **Open** → **Open**
+
+> The Mac app isn't signed yet, so Gatekeeper blocks a normal double-click on first launch — right-click → Open bypasses it once, then it opens normally.
+
+Windows installers are code-signed free of charge by the [SignPath Foundation](https://signpath.org) — see [docs/CODE-SIGNING-POLICY.md](docs/CODE-SIGNING-POLICY.md). (The signed binaries show "SignPath Foundation" as the publisher.)
+
+## Building from source
+
+Prerequisites: Node.js 20+ and npm.
+
+```bash
+npm ci
+npm run ui:build      # build the Next.js static UI into ./out
+npx electron-builder --win nsis --publish never   # Windows installer
+npx electron-builder --mac --publish never        # macOS app (zip)
+```
+
+Notes:
+- On native Windows, set `build.win.signAndEditExecutable` to `true` (the CI
+  workflow does this) so electron-builder stamps the exe icon and version
+  metadata itself.
+- On Linux, the build uses Wine + a bundled `rcedit` via `build/afterPack.js`
+  (see [BUILD-NOTES.md](BUILD-NOTES.md)); the macOS `dmg` target needs
+  macOS-only `hdiutil`, so Linux builds use the `zip` target instead.
+
+## Tech
+
+Electron + Next.js (statically exported) + React. The UI lives in `app/`,
+the Electron shell in `main.js` / `preload.js`.
 
 ## License
 
-Proprietary — © 2026 Avinash T. All rights reserved. See [LICENSE](LICENSE).
-You may download, install, and use Lockin, but you may not modify, redistribute, rename, or sell it.
+MIT — © 2026 Avinash T. See [LICENSE](LICENSE).
 
 ## Author
 

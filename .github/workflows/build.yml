@@ -1,0 +1,82 @@
+# Build and sign Lockin for Windows
+#
+# Triggered manually or by pushing a version tag (e.g. v1.1).
+# Produces an unsigned installer, submits it to SignPath Foundation for
+# free open-source code signing, and uploads the signed installer as an
+# artifact — attach it to the GitHub release manually.
+#
+# PREREQUISITES (one-time, after SignPath approves the project):
+#   1. Apply at https://signpath.org — approval takes a few days to weeks.
+#   2. Add these repository secrets (Settings → Secrets and variables → Actions):
+#        SIGNPATH_API_TOKEN
+#        SIGNPATH_ORG_ID
+#        SIGNPATH_PROJECT_SLUG
+#   3. In the SignPath project, create:
+#        - a "release-signing" signing policy
+#        - an "nsis-installer" artifact configuration for the Lockin-*.exe
+#      and make the slugs below match exactly.
+
+name: Build and sign (Windows)
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # Native Windows build: let electron-builder stamp the exe icon and
+      # version metadata itself (on Linux this stays false and afterPack
+      # does the stamping via Wine — see BUILD-NOTES.md).
+      - run: npm pkg set build.win.signAndEditExecutable=true
+
+      - run: npm run ui:build
+      - run: npx electron-builder --win nsis --publish never
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lockin-windows-unsigned
+          path: release/*.exe
+
+  sign-windows:
+    needs: build-windows
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: lockin-windows-unsigned
+          path: unsigned/
+
+      - id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: signpath-input
+          path: unsigned/
+
+      - uses: signpath/github-action-submit-signing-request@v1
+        with:
+          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+          organization-id: ${{ secrets.SIGNPATH_ORG_ID }}
+          project-slug: ${{ secrets.SIGNPATH_PROJECT_SLUG }}
+          signing-policy-slug: release-signing
+          artifact-configuration-slug: nsis-installer
+          github-artifact-id: ${{ steps.upload.outputs.artifact-id }}
+          wait-for-completion: true
+          output-artifact-directory: signed/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lockin-windows-signed
+          path: signed/

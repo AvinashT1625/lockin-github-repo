@@ -1,0 +1,69 @@
+{
+  "author": "Avinash T",
+  "build": {
+    "afterPack": "build/afterPack.js",
+    "appId": "com.charlie.focustimer",
+    "directories": {
+      "buildResources": "build",
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "package.json",
+      "out/**/*"
+    ],
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "FocusTimer-Setup-${version}.${ext}",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "installerIcon": "build/icon.ico",
+      "oneClick": false,
+      "perMachine": false,
+      "shortcutName": "Lockin",
+      "uninstallDisplayName": "Lockin"
+    },
+    "productName": "Lockin",
+    "win": {
+      "icon": "build/icon.ico",
+      "signAndEditExecutable": false,
+      "target": [
+        "nsis"
+      ]
+    },
+    "mac": {
+      "artifactName": "Lockin-1.0-mac.${ext}",
+      "category": "public.app-category.productivity",
+      "icon": "build/icon.icns",
+      "target": [
+        "zip"
+      ]
+    }
+  },
+  "dependencies": {
+    "next": "^15.3.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "description": "A tiny floating always-on-top focus countdown timer.",
+  "devDependencies": {
+    "electron": "^34.5.0",
+    "electron-builder": "^25.1.8"
+  },
+  "main": "main.js",
+  "name": "focus-timer",
+  "private": true,
+  "scripts": {
+    "dist": "npm run ui:build && electron-builder --win nsis --publish never",
+    "start": "electron .",
+    "ui:build": "next build",
+    "ui:dev": "next dev"
+  },
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AvinashT1625/lockin-github-repo.git"
+  }
+}
