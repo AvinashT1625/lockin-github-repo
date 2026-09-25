@@ -1,6 +1,6 @@
 # Lockin
 
-A tiny, premium floating countdown timer for Windows. Set days, hours, minutes and seconds, hit Start, and it floats above everything else while you lock in.
+A tiny, premium always-on-top floating countdown timer for Windows. Set days, hours, minutes and seconds, hit Start, and it floats above everything else while you lock in.
 
 ## Screenshots
 
@@ -20,36 +20,16 @@ A tiny, premium floating countdown timer for Windows. Set days, hours, minutes a
 
 ## Download
 
-Grab the latest installer from the [**Releases**](https://github.com/AvinashT1625/lockin/releases) page and run it.
+Get **Lockin 1.0** from the [Releases](https://github.com/AvinashT1625/lockin-github-repo/releases/tag/v1.0) page, run the installer, and launch Lockin from the Start menu.
+
+**Requirements:** Windows 10/11 (64-bit).
 
 > The installer isn't code-signed yet, so Windows SmartScreen may show a warning on first run — click **More info → Run anyway**. Signing is on the roadmap.
 
-## Build from source
-
-You need [Node.js LTS](https://nodejs.org) installed.
-
-```powershell
-npm install        # one-time: downloads Electron + Next.js
-npm run ui:build   # build the static UI
-npm run dist       # package the Windows installer (outputs to release/)
-```
-
-For development with hot reload:
-
-```powershell
-npm run ui:dev      # start the Next.js dev server
-npm start            # launch the Electron shell
-```
-
-## Tech
-
-- **UI:** Next.js (static export) + React
-- **Shell:** Electron — frameless, transparent, always-on-top window
-- **Packaging:** electron-builder (NSIS)
-
 ## License
 
-MIT — see [LICENSE](LICENSE).
+Proprietary — © 2026 Avinash T. All rights reserved. See [LICENSE](LICENSE).
+You may download, install, and use Lockin, but you may not modify, redistribute, rename, or sell it.
 
 ## Author
 
