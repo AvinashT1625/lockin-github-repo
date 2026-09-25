@@ -1,21 +1,27 @@
-MIT License
+LOCKIN PROPRIETARY LICENSE
+Copyright (c) 2026 Avinash T. All rights reserved.
 
-Copyright (c) 2026 Avinash T
+Grant of use
+Permission is hereby granted to any person obtaining a copy of this software
+(the "Software") to download, install, and use the Software for personal,
+non-commercial purposes, subject to the conditions below.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Restrictions
+You may not, in whole or in part:
+- modify, adapt, translate, or create derivative works of the Software;
+- redistribute, resell, sublicense, rent, lease, or lend the Software;
+- rename the Software, or remove or alter any copyright or attribution notices;
+- reverse engineer, decompile, or disassemble the Software, except to the
+  extent such a restriction is prohibited by applicable law.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Ownership
+The Software is licensed, not sold. Avinash T is the sole developer and owner
+of the Software and retains all right, title, and interest in and to it.
 
+Disclaimer
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
